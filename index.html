@@ -62,12 +62,9 @@
     <button onclick="copyText(text28)">RGB</button>
     <button onclick="copyText(text29)">1Colrtoanother</button>
     <button onclick="copyText(text30)">Pseudofalse</button>
-
     
-    
-
     <p id="copiedMsg"></p>
-
+    
     <script>
         // Text variables
         const text1 = `clc; clear all; disp("Log Transformation Code");clc;
@@ -730,18 +727,23 @@ Histogram=imhist(Image);
 figure();
 plot(0:255,Histogram);
 `;
-
-        // Function to copy text
+         // Function to copy text to clipboard
         function copyText(text) {
-            navigator.clipboard.writeText(text).then(function () {
-                const msg = document.getElementById('copiedMsg');
-                msg.innerHTML = "Text Copied!";
-                setTimeout(() => {
-                    msg.innerHTML = "";
-                }, 3000); // Clears the message after 3 seconds
-            }).catch(function (err) {
-                console.error('Unable to copy text', err);
-            });
+            // Create a temporary textarea element to hold the text
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy'); // Copy the text to clipboard
+            document.body.removeChild(textArea); // Remove the textarea element
+
+            // Display message to user
+            document.getElementById("copiedMsg").textContent = "Text copied to clipboard!";
+            
+            // Clear message after 2 seconds
+            setTimeout(() => {
+                document.getElementById("copiedMsg").textContent = "";
+            }, 2000);
         }
     </script>
 </body>
