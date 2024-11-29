@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Text Buttons</title>
+    <style>
+        button {
+            margin: 5px;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #ddd;
+            border: 1px solid #aaa;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="copyText(text1)">LogTransf</button>
+    <button onclick="copyText(text2)">PowerLawTransf</button>
+    <button onclick="copyText(text3)">Negation</button>
+    <button onclick="copyText(text4)">Contrast Stretching</button>
+    <button onclick="copyText(text5)">Grey Level</button>
+    <button onclick="copyText(text6)">BitPlane</button>
+    <button onclick="copyText(text7)">Discretefourier</button>
+    <button onclick="copyText(text8)">Gaussianlow</button>
+    <button onclick="copyText(text9)">Butterworthlow</button>
+    <button onclick="copyText(text10)">IdealHighPass</button>
+    <button onclick="copyText(text11)">Ideallowpass</button>
+    <button onclick="copyText(text12)">Imageaveraging</button>
+    <button onclick="copyText(text13)">Intensitylevel</button>
+    <button onclick="copyText(text14)">Imageaveraging Addition</button>
+    <button onclick="copyText(text15)">Imagesubtr</button>
+    <button onclick="copyText(text16)">Medianfiltering</button>
+    <button onclick="copyText(text17)">Erosion&Dilation</button>
+    <button onclick="copyText(text18)">Opening&Closing</button>
+    <button onclick="copyText(text19)">BoundaryExtr</button>
+    <button onclick="copyText(text20)">Morphgradient</button>
+    <button onclick="copyText(text21)">Top-hattransf</button>
+    <button onclick="copyText(text22)">Regionfilling</button>
+    <button onclick="copyText(text23)">ReadWritedisp</button>
+    <button onclick="copyText(text24)">PixelValue</button>
+    <button onclick="copyText(text25)">RetrHeigWeid</button>
+    <button onclick="copyText(text26)">Textonimag</button>
+    <button onclick="copyText(text27)">Rectangleonimg</button>
+    <button onclick="copyText(text28)">RGB</button>
+    <button onclick="copyText(text29)">1Colrtoanother</button>
+    <button onclick="copyText(text30)">Pseudofalse</button>
+
+    
+    
+
+    <p id="copiedMsg"></p>
+
+    <script>
+        // Text variables
+        const text1 = `clc; clear all; disp("Log Transformation Code");clc;
+clear all;
+disp"10 Prerana Jadhav"
+a=imread("C:\MSCIT 1\IP\image1.jpg");
+b=double(a);
+subplot(1,2,1);
+imshow(a);
+title('Original image')
+t=10; //constant value
+[m,n]=size(b);
+for i=1:m
+    for j=1:n
+        c(i,j)=t*log(1+b(i,j))
+    end
+end
+subplot(1,2,2);
+imshow(uint8(c));
+title('Log Transformation image')
+`;
+        const text2 = `clc; clear all; disp("Power Law Transformation Code");clc;
+clear all;
+disp"10 Prerana Jadhav"
+a=imread("E:\PRERANA\MSc-IT\IP\image.jpg");
+b=double(a);
+subplot(1,2,1);
+imshow(a);
+title('Original image')
+k=1;
+gamma=1;
+[m,n]=size(b);
+for i=1:m
+    for j=1:n
+        c(i,j)=k*(b(i,j)^gamma);
+    end
+end
+subplot(1,2,2);
+imshow(uint8(c));
+title('power law image')
+`;
+        const text3 = `clc; clear all; disp("Negation Code");clc;
+clear all;
+disp"10 Prerana Jadhav"
+a=imread('E:\PRERANA\MSc-IT\IP\image.jpg');
+subplot(1,2,1);
+imshow(a)
+title('Original image')
+[m,n]=size(a)
+for i=1:m
+    for j=1:n
+        c(i,j)=255-a(i,j)
+    end
+end
+subplot(1,2,2);
+imshow(c)
+title('Negation image')
+`;
+        const text4 = `clc; clear all; disp("Contrast Stretching Code"); clc;
+clear all;
+disp"10 Prerana Jadhav"
+img=imread("E:\PRERANA\MSc-IT\IP\image1.jpg");
+temping=double(img)
+subplot(1,2,1);
+imshow(img)
+title('Original image')
+thres=100
+[m,n]=size(img);
+for i=1:m
+    for j=1:n
+        if(temping(i,j)<thres)
+            new(i,j)=0
+        else
+            new(i,j)=255
+        end
+    end
+end
+subplot(1,2,2);
+imshow(new)
+title('Threshold added image')
+`;
+        const text5 = `clc; clear all; disp("Grey Level Code"); clc;
+clear all;
+disp"10 Prerana Jadhav"
+a=imread("E:\PRERANA\MSc-IT\IP\image4.jpg");
+b=double(a);
+[m,n]=size(b);
+x1=input("Enter x1=");
+x2=input("Enter x2=");
+c=zeros(m,n);
+d=zeros(m,n);
+for i=1:m
+    for j=1:n
+        if(b(i,j)>=x1 && b(i,j)<=x2)
+            c(i,j)=0;
+        else
+            c(i,j)=0;
+        end
+     end      
+end
+for i=1:m
+    for j=1:n
+        if(b(i,j)>=x1 && b(i,j)<=x2)
+            d(i,j)=255;
+        else
+            d(i,j)=b(i,j);
+        end
+     end      
+end
+subplot(1,3,1);
+imshow(a);
+title('Original image')
+subplot(1,3,2);
+imshow(uint8(c));
+title('gray level slicing without background');
+subplot(1,3,3);
+imshow(uint8(d));
+title('gray level slicing with background');
+`;
+        const text6 = `clc; clear all; disp("Bit Plane Code");clc;
+clear all;
+disp"10 Prerana Jadhav"
+a=imread("E:\PRERANA\MSc-IT\IP\image2.jpg");
+b = double(a);
+subplot(2,3,1);
+imshow(a);
+title('Original Image')
+f1 =bitget(b,1);
+subplot(2,3,2);
+imshow(f1);
+title('bit 1 img')
+f8 =bitget(b,8);
+subplot(2,3,3);
+imshow(f8);
+title('bit 8 img')
+f6 =bitget(b,6);
+subplot(2,3,4);
+imshow(f6);
+title('bit 6 img')
+f3 =bitget(b,3);
+subplot(2,3,5);
+imshow(f3);
+title('bit 3 img')
+
+`;
+        const text7 = `clc; clear all; disp("Discrete Fourier Code"); I = imread("E:/PRERANA/MSc-IT/IP/image.jpg");
+I = double(I);
+J = fft2(I);
+L = fftshift(J);
+
+subplot(1, 3, 1);
+imshow(originalImage);
+title("Original Image");
+
+subplot(1, 3, 2);
+imshow(fourierTransform);
+title("Fourier Transform");
+
+subplot(1, 3, 3);
+imshow(shiftedFourierTransform);
+title("Shifted Fourier Transform");
+`;
+        const text8 = `clc; clear all; disp("Gaussian Low Pass Code"); S=imread(fullpath(getIPCVpath()+"/images/measure_gray.jpg"));
+h=mkfftfilter(S,'gauss',0.4);
+S2=fft2(im2double(S));
+S3=S2.*fftshift(h);
+S4=real(ifft(S3));
+
+subplot(2,2,1);
+imshow(S);
+title('Original Image');
+
+subplot(2,2,2);
+imshow(S2);
+title('Fourier transform');
+
+subplot(2,2,3);
+imshow(S3);
+title('Shifted Fourier transform');
+
+subplot(2,2,4);
+imshow(S4);
+title('Filtered Image');
+`;
+        const text9 = `clc; clear all; disp("Butterworth Low Pass Code");clc;
+clear all;
+S = imread(fullpath(getIPCVpath() + "/images/measure_gray.jpg"));
+h = mkfftfilter(S,'butterworth1',0.1);
+S2 = fft2(im2double(S));
+S3 = S2.*fftshift(h);
+S4 = real(ifft(S3));
+
+subplot(2,2,1);
+imshow(S);
+title('Original Image');
+
+subplot(2,2,2);
+imshow(S2);
+title('Fourier Transform Image');
+
+subplot(2,2,3);
+imshow(S3);
+title('Shifted fourier Image');
+
+subplot(2,2,4);
+imshow(S4);
+title('Filtered Image');
+`;
+        const text10 = `clc; clear all; disp("Ideal High Pass Code");clc;
+clear all;
+disp"10 Prerana Jadhav"
+S=imread("E:\PRERANA\MSc-IT\IP\image4.jpg");
+S2=fft2(im2double(S));
+h=ffilt('lp',3,0.2,0.6);
+img=imfilter(S2,h);
+S4=real(ifft(img));
+subplot(1,3,1);
+imshow(S);
+title('Original Image');
+subplot(1,3,2);
+imshow(S2);
+title('Fourier Transform Image');
+subplot(1,3,3);
+imshow(S4);
+title('Filtered Image');
+`;
+        const text11 = `clc; clear all; disp("Ideal Low Pass Code"); clc;
+clear all;
+disp"10 Prerana Jadhav"
+S=imread("E:\PRERANA\MSc-IT\IP\image4.jpg");
+S2=fft2(im2double(S));
+h=ffilt('hp',3,0.2,0.4);
+img=imfilter(S2,h);
+S4=real(ifft(img));
+
+subplot(1,3,1);
+imshow(S);
+title('Original Image');
+
+subplot(1,3,2);
+imshow(S2);
+title('Fourier Transform Image');
+
+subplot(1,3,3);
+imshow(S4);
+title('Filtered Image');
+`;
+        const text12 = `clc; clear all; disp("Image Averaging Code");clc;
+clear all;
+
+a=imread("D:\IP\img2.jpg");
+subplot(2,2,1);
+imshow(a);
+title("Original Image");
+
+D=0.01;
+g=imnoise(a,'salt and pepper',D);
+subplot(2,2,2);
+imshow(g);
+title('Noisy Image');
+
+meanFilter=fspecial('average');
+toShow=imfilter(g, meanFilter);
+subplot(2,2,3);
+imshow(toShow);
+title('Average Image');
+`;
+        const text13 = `clc; clear all; disp("Intensity Level Code");clc;
+clear all;
+figure(1);
+//checker board
+subplot(3,3,1);
+i=imread("D:\IP\img1.jpg");
+imshow(i);
+title('Original Image');
+
+subplot(3,3,2);
+j=imresize(i,0.8);
+imshow(j);
+title('Resized Image 0.8');
+
+subplot(3,3,3);
+j=imresize(i,0.6);
+imshow(j);
+title('Resized Image 0.6');
+
+subplot(3,3,4);
+j=imresize(i,0.4);
+imshow(j);
+title('Resized Image 0.4');
+
+subplot(3,3,5);
+j=imresize(i,0.2);
+imshow(j);
+title('Resized Image 0.2');
+
+subplot(3,3,6);
+j=imresize(i,0.1);
+imshow(j);
+title('Resized Image 0.1');
+`;
+        const text14 = `clc; clear all; disp("Image Averaging Addition Code");clc;
+clear all;
+
+a=imread("D:\IP\img2.jpg");
+subplot(2,2,1);
+imshow(a);
+title("Original Image");
+
+D=0.01;
+g=imnoise(a,'salt and pepper',D);
+subplot(2,2,2);
+imshow(g);
+title('Noisy Image');
+
+meanFilter=fspecial('average');
+toShow=imfilter(g, meanFilter);
+subplot(2,2,3);
+imshow(toShow);
+title('Average Image');
+`;
+        const text15 = `clc; clear all; disp("Image Subtraction Code");// Load two images for comparison
+img1 = imread("E:\PRERANA\MSc-IT\IP\imgg1.jpg");
+img2 = imread("E:\PRERANA\MSc-IT\IP\imgg2.jpg");
+
+// Compute the absolute difference for each color channel
+difference = abs(img1 - img2);
+
+// Display the results
+clf; // Clear the figure
+subplot(2, 2, 1);
+imshow(img1);
+title("Image 1");
+
+subplot(2, 2, 2);
+imshow(img2);
+title("Image 2");
+
+subplot(2, 2, 3);
+imshow(difference);
+title("Absolute Difference");
+`;
+        const text16 = `clc; clear all; disp("Median Filtering Code");clc;
+clear all;
+a=imread("D:\IP\img4.jpg");
+
+NoisyImage=imnoise(a,'salt and pepper',0.02);
+[m,n]=size(a);
+output=immedian(NoisyImage,[3,3]);
+
+subplot(2,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(2,2,2);
+imshow(NoisyImage);
+title('noisy Image');
+
+subplot(2,2,3);
+imshow(output);
+title('output Image');
+`;
+        const text17 = `clc; clear all; disp("Erosion&Dilation"); //Code for Erosion:
+a=imread("E:\PRERANA\MSc-IT\IP\im.jpg");
+
+se=imcreatese('rect',5,5);
+erosion=imerode(a,se);
+
+subplot(1,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(1,2,2);
+imshow(erosion);
+title('Eroded Image');
+//Code for Dilation:
+
+a=imread("E:\PRERANA\MSc-IT\IP\erodee.jpg");
+
+se=imcreatese('ellipse',10,10);
+dilation=imdilate(a,se);
+
+subplot(1,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(1,2,2);
+imshow(dilation);
+title('dilated Image');
+
+`;
+        const text18 = `clc; clear all; disp("Opening&Closing"); //Code for opening:
+clc;
+clear all;
+a=imread("E:\PRERANA\MSc-IT\IP\im.jpg");
+se=imcreatese('ellipse',30,30);
+erosion=imerode(a,se);
+opening=imdilate(erosion,se)
+
+subplot(1,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(1,2,2);
+imshow(opening);
+title('opening Image');
+
+//Code for closing:
+a=imread("E:\PRERANA\MSc-IT\IP\imm.jpg");
+
+se=imcreatese('ellipse',30,30);
+dilation=imdilate(a,se);
+closing=imerode(dilation,se);
+
+subplot(1,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(1,2,2);
+imshow(closing);
+title('Closing Image');
+
+
+`;
+        const text19 = `clc; clear all; disp("BoundaryExtr"); a=imread("E:\PRERANA\MSc-IT\IP\img9.jpg");
+
+se=imcreatese('ellipse',10,10);
+erosion=imerode(a,se);
+
+Boundary=a-erosion
+
+subplot(2,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(2,2,2);
+imshow(erosion);
+title('eroded Image');
+
+subplot(2,2,3);
+imshow(Boundary);
+title('Boundary Image');
+`;
+        const text20 = `clc; clear all; disp("Morphgradient"); a=imread("E:\PRERANA\MSc-IT\IP\mg.jpg");
+
+se=imcreatese('rect',30,30);
+dilation=imdilate(a,se);
+erosion=imerode(a,se);
+
+gradient=dilation-erosion
+
+subplot(2,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(2,2,2);
+imshow(dilation);
+title('dilated Image');
+
+subplot(2,2,3);
+
+imshow(erosion);
+title('erosion image');
+
+subplot(2,2,4);
+imshow(gradient);
+title('gradient image');
+
+`;
+        const text21 = `clc; clear all; disp("Top-hattransf"); a=imread("E:\PRERANA\MSc-IT\IP\tophat.jpg");
+
+se=imcreatese('ellipse',30,30);
+erosion=imerode(a,se);
+opening=imdilate(erosion,se)
+
+tophat=a-opening
+
+subplot(2,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(2,2,2);
+imshow(opening);
+title('opening Image');
+
+subplot(2,2,3);
+imshow(tophat);
+title('tophat Image');
+`;
+        const text22 = `clc; clear all; disp("Regionfilling"); S=imread(fullpath(getIPCVpath()+"/images/"+'coins_gray.jpg'));
+subplot(1,3,1);
+imshow(S);
+Sbin=im2bw(~S,0.5);
+
+subplot(1,3,2);
+imshow(Sbin);
+Sfill=imfill(Sbin);
+
+subplot(1,3,3);
+imshow(Sfill);
+
+`;
+        const text23 = `clc; clear all; disp("ReadWritedisp"); import cv2
+import numpy as np
+
+img=cv2.imread(“ .jpeg”);
+cv2.imshow(‘image’,img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+`;
+        const text24 = `clc; clear all; disp("PixelValue");import cv2
+import numpy as np
+
+img = cv2.imread("E:\\PRERANA\\MSc-IT\\IP\\image1.jpg")  
+
+cv2.imshow('Image', img)  # Display the image
+cv2.waitKey(0)  # Wait for a key press
+cv2.destroyAllWindows()  # Close the display window
+pixel = img[100,100]
+print(pixel)
+`;
+        const text25= `clc; clear all; disp("RetrHeigWeid"); import cv2
+import numpy as np
+
+img = cv2.imread("E:\\PRERANA\\MSc-IT\\IP\\image1.jpg")  
+
+height=img.shape[0]
+width=img.shape[1]
+channels=img.shape[2]
+size1=img.size
+print('Image Height:',height)
+print('Image Width:',width)
+print('Image Channels:',channels)
+print('Image Size:',size1)
+`;
+        const text26 = `clc; clear all; disp("Textonimag"); import cv2
+import numpy as np
+
+img = cv2.imread("E:\\PRERANA\\MSc-IT\\IP\\image1.jpg")  
+
+font=cv2.FONT_HERSHEY_SIMPLEX
+cv2.putText(img,'Hello',(100,100),font,1,(0,255,0))
+cv2.imshow('image',img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+`;
+        const text27 = `clc; clear all; disp("Rectangleonimg"); import cv2
+import numpy as np
+
+img = cv2.imread("E:\\PRERANA\\MSc-IT\\IP\\image1.jpg")  
+
+cv2.rectangle(img,(15,25),(200,150),(0,0,0),15)
+cv2.imshow('image',img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+`;
+        const text28 = `clc; clear all; disp("RGB"); clc;
+clear all;
+I=imread('E:\PRERANA\MSc-IT\IP\8a.jpg');
+
+//rows and columns in the image
+r=size(I,1);
+c=size(I,2);
+
+//creating zero matrices
+R=zeros(r,c,3);
+G=zeros(r,c,3);
+B=zeros(r,c,3);
+
+//storing corresponding color plane
+//red plane
+R(:,:,1)=I(:,:,1);
+
+//blue plane
+G(:,:,2)=I(:,:,2);
+
+//blue plane
+B(:,:,3)=I(:,:,3);
+
+subplot(2,2,1);
+
+subplot(2,2,2);
+imshow(uint8(R));
+title('Red Component');
+
+subplot(2,2,3);
+imshow(uint8(G));
+title('Green Component');
+
+subplot(2,2,4);
+imshow(uint8(B));
+title('Blue Component');
+`;
+        const text29 = `clc; clear all; disp("1Colrtoanother"); rgb=imread(fullpath(getIPCVpath()+"/images/"+'peppers.png'));
+hsv=rgb2hsv(rgb);
+
+subplot(2,3,1);
+imshow(rgb);
+title('Original RGB image');
+
+subplot(2,3,2);
+imshow(hsv);
+title('HSV Image');
+
+subplot(2,3,3);
+imshow(hsv(:,:,3));
+title('Intensity Component');
+
+subplot(2,3,4);
+imshow(hsv(:,:,1));
+title('Hue Component');
+
+subplot(2,3,5);
+imshow(hsv(:,:,2));
+title('Saturation Component');
+//rcb to ycbcr
+clc;
+clear all;
+rgb=imread("C:\Program Files\scilab-6.0.2\IPCV\images\balloons.png");
+ycbcr=rgb2ycbcr(rgb);
+
+subplot(2,3,1);
+imshow(rgb);
+title('Original RGB image');
+
+subplot(2,3,2);
+imshow(ycbcr);
+title('YCBCR Image');
+
+subplot(2,3,3);
+imshow(ycbcr(:,:,1));
+title('Luminance');
+
+subplot(2,3,4);
+imshow(ycbcr(:,:,2));
+title('Chrominance Cb');
+
+subplot(2,3,5);
+imshow(ycbcr(:,:,3));
+title('Chrominance Cr');
+
+`;
+        const text30 = `clc; clear all; disp("Pseudofalse"); clear;
+RGB=imread(‘E:\PRERANA\MSc-IT\IP\8a.jpg’);
+Image=rgb2gray(RGB);
+
+subplot(1,3,1);
+imshow(RGB);
+title('Original RGB Image');
+
+subplot(1,3,2);
+imshow(Image);
+title('Gray RGB Image');
+
+subplot(1,3,3);
+imshow(Image.jetcolormap(256));
+title('Pseudo Color Image');
+
+Histogram=imhist(Image);
+figure();
+plot(0:255,Histogram);
+`;
+
+        // Function to copy text
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(function () {
+                const msg = document.getElementById('copiedMsg');
+                msg.innerHTML = "Text Copied!";
+                setTimeout(() => {
+                    msg.innerHTML = "";
+                }, 3000); // Clears the message after 3 seconds
+            }).catch(function (err) {
+                console.error('Unable to copy text', err);
+            });
+        }
+    </script>
+</body>
+
+</html>
